@@ -11,7 +11,8 @@ Backend Creation
         - The backend folder is like a central hub for the backend. Mainly for settings, urls, and the manage.py file which is
           an entry point to execute commands.
 3. Went into backend folder, then settings.py file. Made the following changes:
-    a. import datetime, os
+    a. import os
+       from datetime import timedelta
     b. from dotenv import load_dotenv
         - Apparently this is for credential in db
     c. load_dotenv()
@@ -63,4 +64,36 @@ Backend Creation
     CORS_ALLOW_ALL_ORIGINS = True
     CORS_ALLOWS_CREDENTIALS = True
     - Can change this later to make things more secure. Good for now for development.
-    - How to make so secure?
+    - How to make it more secure later?
+    
+Dealing with JWT Tokens
+Interaction between the front end and backend
+Front end stores access and refresh token - using them for each backend call
+If access token expires - the refresh token will submit a request to get a new access token
+
+Granting an Access token
+First need a User
+Before a User - Since we are using the User module in Django - We need a serializer in order to exchange Python data and JSON
+1. Created the following file in the api app folder: serializers.py
+    
+    from django.contrib.auth.models import User
+    from rest_framework import serializers
+
+
+    class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+
+        model = User
+        fields = ["id", "username", "password"]
+        extra_kqargs = {"password": {"write_only": True}}
+
+    def create(self, validated_data):
+
+        user = User.objects.create_user(**validated_data)
+        
+        return user
+
+    - Using djangos user functionality and rest serializer functionality
+
+
