@@ -95,5 +95,38 @@ Before a User - Since we are using the User module in Django - We need a seriali
         return user
 
     - Using djangos user functionality and rest serializer functionality
+2. In views, started views.py adjustments in order to create a user - because still needed a path to create a user
+
+    from django.shortcuts import render
+    from django.contrib.auth.models import User
+    from rest_framework import generics
+    from .serializers import UserSerializer
+    from rest_framework.permissions import IsAuthenticated, AllowAny
+    
+    
+    class CreateUserView(generics.CreateAPIView):
+    
+        queryset = User.objects.all()
+        serializer_class = User
+        permission_classes = [AllowAny]
+
+3. Configured urls.py in backend dir
+    
+    from django.contrib import admin
+    from django.urls import path, include
+    from api.views import CreateUserView
+    from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+    
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('api/user/register/', CreateUserView.as_view(), name="register"),
+        path('api/token/', TokenObtainPairView.as_view(), name="get_token"),
+        path('api/token/refresh/', TokenRefreshView.as_view(), name="refresh"),
+        path('api-auth/', include("rest_framework.urls"))
+    ]
+   
+4. Made migrations in DB with following code:
+    a. 
+    
 
 
