@@ -126,7 +126,10 @@ Before a User - Since we are using the User module in Django - We need a seriali
     ]
    
 4. Made migrations in DB with following code:
-    a. 
+    a. python manage.py makemigrations
+    b. python manage.py migrate
+5. Run server
+    a. python manage.py runserver
     
 
 
