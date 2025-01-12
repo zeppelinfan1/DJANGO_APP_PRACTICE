@@ -133,3 +133,22 @@ Before a User - Since we are using the User module in Django - We need a seriali
     
 
 
+Frontend setup
+
+1. Ran the following code while in the root directory (so that a new folder for frontend is created - just like backend)
+    - npm create vite@latest frontend -- --template react
+2. Cd into frontend and install the following
+    - npm install axios react-router-dom jwt-decode
+3. Inside src folder - deleted css files
+4. Inside of App.jsx - removed the jargin inside of the return statement. Also the const statement. Also removed all the imports.
+    Added following line of code:
+        import react from "react"
+5. Inside of main.jsx - removed the import './index.css' - don't need that
+
+6. Inside of src folder create the following directories
+    - pages
+    - styles
+    - components
+Made a constants.js file
+
+
