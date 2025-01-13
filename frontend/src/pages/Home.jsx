@@ -33,7 +33,7 @@ function Home() {
         e.preventDefault()
         api.post("/api/notes/", {content, title})
             .then((res) => {
-                if (res.status == 201) alert("Note created!");
+                if (res.status === 201) alert("Note created!");
                 else alert("Failed to create note.");
             getNotes();
             }).catch((err) => alert(err))
