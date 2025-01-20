@@ -39,6 +39,9 @@ class Scraper_4chan:
                     print(f"OP Content: {op_content}")
                     print("------------------------------------------------")
 
+                    """ DATA WITHIN THREAD
+                    """
+
 
 
 if __name__ == "__main__":
